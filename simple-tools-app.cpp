@@ -13,7 +13,7 @@ class Tools {
 
  public:
   string menu(){
-   return "\n1.) Sum of two value\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Exit";
+   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Exit";
   }
 
   string horizontalLine(){
@@ -42,6 +42,42 @@ class Tools {
    return factorial_display;
   }
 
+  string tableOfANumber(int num1){
+   string table;
+
+   for(int i = 1; i <= 10; i++){
+    table += to_string(num1) + " x " + to_string(i) + " = " + to_string((num1 * i)) + "\n";
+   }
+
+   return table;
+  }
+
+  string evenNumberFromMinMax(int min, int max){
+   string even_number_display;
+
+   for(int i = min; i <= max; i+= 2){
+    even_number_display += to_string(i) + " ";
+   }
+
+   return even_number_display;
+  }
+
+  string primeNumber(int num1){
+   string result_message;
+    if (num1 <= 1) {
+        return "Prime Number";
+    }
+
+    for (int i = 2; i * i <= num1; ++i) {
+        if (num1 % i == 0) {
+            return "Not A Prime Number";
+        }
+    }
+
+    return "Prime Number";
+
+  }
+
   int sumOfTwoValue(int num1, int num2){
    return num1 + num2;
   }
@@ -51,6 +87,9 @@ class Tools {
 
 void sumOfTwoValue(Tools &tools);
 void factorial(Tools &tools);
+void tableOfANumber(Tools &tools);
+void evenNumberFromMinMax(Tools &tools);
+void primeNumber(Tools &tools);
 
 int main(){
  Tools tools; 
@@ -71,13 +110,13 @@ int main(){
      factorial(tools);
      break;
     case 3:
-     cout << "Table of a number"; 
+     tableOfANumber(tools);
      break;
     case 4:
-     cout << "Even number from min to max";
+     evenNumberFromMinMax(tools);
      break;
     case 5:
-     cout << "Prime number";
+     primeNumber(tools);
      break;
     default: 
      exit_choice = 1;
@@ -93,7 +132,7 @@ void sumOfTwoValue(Tools &tools){
 
  int num1, num2;
  cout << tools.displayTitle();
- cout << "\nSum of Two Value";
+ cout << "\nSum of Two Values";
  cout << "\nEnter first number: ";
  cin >> num1;
  cout << "Enter second number: ";
@@ -116,4 +155,46 @@ void factorial(Tools &tools){
  cout << endl << tools.horizontalLine() << endl;
  cout << tools.displayFactorialProcess(num1) << tools.getFactorial(num1);
  cout << endl << tools.horizontalLine() << endl;
+}
+
+void tableOfANumber(Tools &tools){
+  system("clear");
+ 
+  int num1;
+  cout << tools.displayTitle();
+  cout << "\nTable of a number";
+  cout << "\nEnter base number: ";
+  cin >> num1;
+
+  cout << endl << tools.horizontalLine();
+  cout << tools.tableOfANumber(num1);
+  cout << tools.horizontalLine() << endl;
+}
+
+void evenNumberFromMinMax(Tools &tools){
+ system("clear");
+
+ int min, max;
+ cout << tools.displayTitle();
+ cout << "\nEven number from min to max";
+ cout << "\nEnter starting point: ";
+ cin >> min;
+ cout << "Enter end point: ";
+ cin >> max;
+
+ cout << tools.evenNumberFromMinMax(min, max);
+}
+
+void primeNumber(Tools &tools){
+ system("clear");
+
+ int num1 = 0;
+ cout << tools.displayTitle();
+ cout << "\nPrime number";
+ cout << "\nEnter a number: ";
+ cin >> num1;
+
+ cout << endl << tools.horizontalLine();
+ cout << endl << tools.primeNumber(num1) << endl;
+ cout << tools.horizontalLine() << endl;
 }
