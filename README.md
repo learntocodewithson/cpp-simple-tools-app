@@ -17,6 +17,7 @@
  - 3.) Table of a number
  - 4.) Even number from 41 to 100
  - 5.) Prime number
+ - 6.) Sum of numbers when prime number is found
  - 6.) Exit
 
 # 1. Sum of the value
@@ -39,3 +40,9 @@
   - Enter a number: 1
   - 1 is a prime number
   - 1 is not prime number
+# 6. Sum of numbers when prime number is found
+  - (in a loop)
+  - Enter a number: 4
+  - if 4 is a prime?
+   - if yes, exit the loop and total all previous inputs
+   - if no, continue looping while asking the new number

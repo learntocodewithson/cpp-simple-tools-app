@@ -11,9 +11,13 @@ class Tools {
   }
  }
 
+ bool isEven(int n){
+  return (n % 2 == 0);
+ }
+
  public:
   string menu(){
-   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Exit";
+   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Sum of numbers when prime number is found\n7.) Exit";
   }
 
   string horizontalLine(){
@@ -55,31 +59,40 @@ class Tools {
   string evenNumberFromMinMax(int min, int max){
    string even_number_display;
 
-   for(int i = min; i <= max; i+= 2){
-    even_number_display += to_string(i) + " ";
+   for(int i = min; i <= max; i++){
+    if(isEven(i)){
+     even_number_display += to_string(i) + " ";
+    }
    }
 
    return even_number_display;
   }
 
-  string primeNumber(int num1){
-   string result_message;
-    if (num1 <= 1) {
-        return "Prime Number";
-    }
-
-    for (int i = 2; i * i <= num1; ++i) {
-        if (num1 % i == 0) {
-            return "Not A Prime Number";
-        }
-    }
-
+  string primeNumberDisplay(int num1){
+   if(primeNumber(num1))
     return "Prime Number";
-
+   else
+    return "Not a Prime Number";
   }
 
   int sumOfTwoValue(int num1, int num2){
    return num1 + num2;
+  }
+
+  bool primeNumber(int num1){
+   string result_message;
+    if (num1 <= 1)
+     return false;
+    if (num1 <= 3)
+     return true;
+    if (num1 % 2 == 0 || num1 % 3 == 0)
+     return false;
+    for (int i = 5; i * i <= num1; i += 6) {
+      if (num1 % i == 0 || num1 % (i + 2) == 0)
+         return false;
+    }
+
+    return true;
   }
  
 
@@ -90,6 +103,7 @@ void factorial(Tools &tools);
 void tableOfANumber(Tools &tools);
 void evenNumberFromMinMax(Tools &tools);
 void primeNumber(Tools &tools);
+void sumOfNumbersWhenPrimeNumberIsFound(Tools &tools);
 
 int main(){
  Tools tools; 
@@ -99,7 +113,7 @@ int main(){
  cout << tools.displayTitle();
  do {
    cout << tools.menu();
-   cout << "\n\nWhat do you want to do? <Type from 1 to 6>: ";
+   cout << "\n\nWhat do you want to do? <Type from 1 to 7>: ";
    cin >> choice;
 
    switch(choice){
@@ -117,6 +131,9 @@ int main(){
      break;
     case 5:
      primeNumber(tools);
+     break;
+    case 6:
+     sumOfNumbersWhenPrimeNumberIsFound(tools);
      break;
     default: 
      exit_choice = 1;
@@ -195,6 +212,26 @@ void primeNumber(Tools &tools){
  cin >> num1;
 
  cout << endl << tools.horizontalLine();
- cout << endl << tools.primeNumber(num1) << endl;
+ cout << endl << tools.primeNumberDisplay(num1) << endl;
+ cout << tools.horizontalLine() << endl;
+}
+
+void sumOfNumbersWhenPrimeNumberIsFound(Tools &tools){
+ system("clear");
+
+ int num1 = 0;
+ int sum = 0;
+ cout << tools.displayTitle();
+ cout << "\nSum of numbers when prime number is found\n";
+
+ while(!tools.primeNumber(num1)){
+  sum += num1;
+
+  cout << "Enter a number: ";
+  cin >> num1;
+ }
+
+ cout << endl << tools.horizontalLine();
+ cout << endl << "Found PRIME NUMBER " + to_string(num1) + ".\nThe sum of previous inputs is " << sum << "." << endl;
  cout << tools.horizontalLine() << endl;
 }
