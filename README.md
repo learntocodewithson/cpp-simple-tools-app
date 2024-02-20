@@ -18,7 +18,10 @@
  - 4.) Even number from 41 to 100
  - 5.) Prime number
  - 6.) Sum of numbers when prime number is found
- - 6.) Exit
+ - 7.) Guess odd or even number
+ - 8.) Reverse a string
+ - 9.) Sort students by marks
+ - 10.) Exit
 
 # 1. Sum of the value
  - Enter number 1: 1
@@ -46,3 +49,17 @@
   - if 4 is a prime?
    - if yes, exit the loop and total all previous inputs
    - if no, continue looping while asking the new number
+# 7. Guess odd or even number
+  - Enter a number: 4
+  - 4 is even number
+  - 3 is odd number
+# 8. Reverse a string
+  - Enter a string: Hello
+  - olleH
+# 9. Sort students by marks
+  - (loop: limit 10)
+  - Enter your name:
+  - Enter your mark:
+  - Display: (decending by default)
+   - 1. Name1 - mark1
+   - 2. Name2 - mark2

@@ -17,7 +17,7 @@ class Tools {
 
  public:
   string menu(){
-   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Sum of numbers when prime number is found\n7.) Exit";
+   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Sum of numbers when prime number is found\n7.) Guess odd or even number\n8.) Reverse a string\n9.) List students by grade\n10.) Exit";
   }
 
   string horizontalLine(){
@@ -94,6 +94,25 @@ class Tools {
 
     return true;
   }
+
+  string oddOrEven(int n){
+   if(isEven(n)){
+     return "Even";
+   } else {
+     return "Odd";
+   }
+  }
+
+  string reverseAString(string str){
+   int str_length = str.length();
+   string reverseString;
+   
+   for(int i = (str_length - 1); i >= 0; i--){
+    reverseString += str[i];
+   }
+
+   return reverseString;
+  }
  
 
 };
@@ -104,6 +123,9 @@ void tableOfANumber(Tools &tools);
 void evenNumberFromMinMax(Tools &tools);
 void primeNumber(Tools &tools);
 void sumOfNumbersWhenPrimeNumberIsFound(Tools &tools);
+void guessOddOrEvenNumber(Tools &tools);
+void reverseAString(Tools &tools);
+void listStudentsByGrade(Tools &tools);
 
 int main(){
  Tools tools; 
@@ -113,7 +135,7 @@ int main(){
  cout << tools.displayTitle();
  do {
    cout << tools.menu();
-   cout << "\n\nWhat do you want to do? <Type from 1 to 7>: ";
+   cout << "\n\nWhat do you want to do? <Type from 1 to 10>: ";
    cin >> choice;
 
    switch(choice){
@@ -134,6 +156,15 @@ int main(){
      break;
     case 6:
      sumOfNumbersWhenPrimeNumberIsFound(tools);
+     break;
+    case 7:
+     guessOddOrEvenNumber(tools);
+     break;
+    case 8:
+     reverseAString(tools);
+     break;
+    case 9:
+     listStudentsByGrade(tools);
      break;
     default: 
      exit_choice = 1;
@@ -234,4 +265,59 @@ void sumOfNumbersWhenPrimeNumberIsFound(Tools &tools){
  cout << endl << tools.horizontalLine();
  cout << endl << "Found PRIME NUMBER " + to_string(num1) + ".\nThe sum of previous inputs is " << sum << "." << endl;
  cout << tools.horizontalLine() << endl;
+}
+
+void guessOddOrEvenNumber(Tools &tools){
+  system("clear");
+
+  int num1 = 0;
+  cout << tools.displayTitle();
+  cout << "\nGuess Odd or Even Number";
+  cout << "\nEnter a number: ";
+  cin >> num1;
+
+  cout << endl << tools.horizontalLine();
+  cout << endl << num1 << " is " + tools.oddOrEven(num1) << endl;
+  cout << tools.horizontalLine() << endl;
+}
+
+void reverseAString(Tools &tools){
+  system("clear");
+
+  string str;
+  cout << tools.displayTitle();
+  cout << "\nReverse a string";
+  cout << "\nEnter a string: ";
+  cin >> str;
+  
+  cout << endl << tools.horizontalLine();
+  cout << endl << "The Reverse of " << str << " is " + tools.reverseAString(str) << endl;
+  cout << tools.horizontalLine() << endl;
+}
+
+void listStudentsByGrade(Tools &tools){
+  system("clear");
+
+  struct Student {
+   string name;
+   int grade;
+  };
+
+  Student students[3];
+
+  for(int i = 0; i < 3; i++){
+   cout << "Enter student"<< (i+1) << " name: "; 
+   cin >> students[i].name;
+
+   cout <<  "Enter student"<< (i+1) << " grade: ";
+   cin >> students[i].grade;
+
+   cout << endl; 
+  }
+
+  // sort
+
+  for(int i = 0; i < 3; i++){
+   cout << students[i].name << " - " << students[i].grade << endl;
+  }
 }
