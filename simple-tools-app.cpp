@@ -117,6 +117,11 @@ class Tools {
 
 };
 
+struct Student {
+ string name;
+ int grade;
+};
+
 void sumOfTwoValue(Tools &tools);
 void factorial(Tools &tools);
 void tableOfANumber(Tools &tools);
@@ -126,6 +131,7 @@ void sumOfNumbersWhenPrimeNumberIsFound(Tools &tools);
 void guessOddOrEvenNumber(Tools &tools);
 void reverseAString(Tools &tools);
 void listStudentsByGrade(Tools &tools);
+void studentsSort(Student arr[], int size, string asc_desc);
 
 int main(){
  Tools tools; 
@@ -298,14 +304,14 @@ void reverseAString(Tools &tools){
 void listStudentsByGrade(Tools &tools){
   system("clear");
 
-  struct Student {
-   string name;
-   int grade;
-  };
+  int size = 10;
+  Student students[size];
+  string asc_desc;
 
-  Student students[3];
+  cout << tools.displayTitle();
+  cout << "\nList Students by Grade\n";
 
-  for(int i = 0; i < 3; i++){
+  for(int i = 0; i < size; i++){
    cout << "Enter student"<< (i+1) << " name: "; 
    cin >> students[i].name;
 
@@ -315,9 +321,41 @@ void listStudentsByGrade(Tools &tools){
    cout << endl; 
   }
 
-  // sort
+  cout << "Sort by Desc or Asc? <type asc or desc>: ";
+  cin >> asc_desc;
 
-  for(int i = 0; i < 3; i++){
+  // sort
+  if(asc_desc == "asc")
+   studentsSort(students, size, "asc");
+  else
+   studentsSort(students, size, "desc");
+  
+  cout << endl << "Sort by " << asc_desc << endl;
+
+  for(int i = 0; i < size; i++)
    cout << students[i].name << " - " << students[i].grade << endl;
+  
+}
+
+void studentsSort(Student arr[], int size, string asc_desc) {
+ for (int i = 0; i < size - 1; ++i) {
+  for (int j = 0; j < size - i - 1; ++j) {
+   bool swap_checker = false;
+
+   if(asc_desc == "asc")
+     if (arr[j].grade > arr[j + 1].grade)
+      swap_checker = true;
+   
+   if (asc_desc == "desc")
+    if (arr[j].grade < arr[j + 1].grade)
+     swap_checker = true;
+   
+   if(swap_checker){
+     Student temp = arr[j]; 
+     arr[j] = arr[j + 1]; 
+     arr[j + 1] = temp;
+   }
+
   }
+ }
 }
