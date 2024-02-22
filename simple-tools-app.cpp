@@ -15,9 +15,21 @@ class Tools {
   return (n % 2 == 0);
  }
 
+ void sortElements(int numbers[], int size){
+  for (int i = 0; i < size - 1; ++i) {
+   for (int j = 0; j < size - i - 1; ++j) {
+    if(numbers[j] < numbers[j+1]){
+      int temp_number = numbers[j]; 
+      numbers[j] = numbers[j + 1]; 
+      numbers[j + 1] = temp_number;
+    }
+   }
+  }
+ }
+
  public:
   string menu(){
-   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Sum of numbers when prime number is found\n7.) Guess odd or even number\n8.) Reverse a string\n9.) List students by grade\n10.) Exit";
+   return "\n1.) Sum of two values\n2.) Factorial of a number\n3.) Table of a number\n4.) Even number from min to max value\n5.) Prime number\n6.) Sum of numbers when prime number is found\n7.) Guess odd or even number\n8.) Reverse a string\n9.) List students by grade\n10.) Find the highest number\n11.) Exit";
   }
 
   string horizontalLine(){
@@ -113,8 +125,11 @@ class Tools {
 
    return reverseString;
   }
- 
 
+  int findTheHighestNumber(int numbers[], int size){
+   sortElements(numbers, size);
+   return numbers[0];
+  }
 };
 
 struct Student {
@@ -132,6 +147,7 @@ void guessOddOrEvenNumber(Tools &tools);
 void reverseAString(Tools &tools);
 void listStudentsByGrade(Tools &tools);
 void studentsSort(Student arr[], int size, string asc_desc);
+void findTheHighestNumber(Tools &tools);
 
 int main(){
  Tools tools; 
@@ -172,6 +188,9 @@ int main(){
     case 9:
      listStudentsByGrade(tools);
      break;
+    case 10:
+     findTheHighestNumber(tools);
+    break;
     default: 
      exit_choice = 1;
      cout << "\nThank your for using this app.";
@@ -358,4 +377,24 @@ void studentsSort(Student arr[], int size, string asc_desc) {
 
   }
  }
+}
+
+void findTheHighestNumber(Tools &tools){
+  system("clear");
+
+  int size = 10;
+  int numbers[size];
+
+  cout << tools.displayTitle();
+  cout << "\nFind the highest number\n";
+
+  for(int i = 0; i < size; i++){
+   cout << "Enter number"<< (i+1) << ": "; 
+   cin >> numbers[i];
+  }
+
+
+  cout << endl << tools.horizontalLine();
+  cout << endl << "The highest value is " << tools.findTheHighestNumber(numbers, size) << endl;
+  cout << tools.horizontalLine() << endl;
 }

@@ -21,7 +21,8 @@
  - 7.) Guess odd or even number
  - 8.) Reverse a string
  - 9.) Sort students by marks
- - 10.) Exit
+ - 10.) Find the highest number
+ - 11.) Exit
 
 # 1. Sum of the value
  - Enter number 1: 1
@@ -63,3 +64,7 @@
   - Display: (decending by default)
    - 1. Name1 - mark1
    - 2. Name2 - mark2
+# 10. Find the highest number
+  - (loop: limit 10)
+  - Enter any number: 
+  - Display: highest number
